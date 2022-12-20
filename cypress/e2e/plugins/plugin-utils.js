@@ -9,6 +9,7 @@ const managePluginsPagePath = '/manage-prototype/plugins'
 const panelProcessingQuery = '[aria-live="polite"] #panel-processing'
 const panelCompleteQuery = '[aria-live="polite"] #panel-complete'
 const panelErrorQuery = '[aria-live="polite"] #panel-error'
+const processingIndicatorQuery = '#manage-plugin-progress-indicator'
 
 function getTemplateLink (type, packageName, path) {
   const queryString = `?package=${urlencode(packageName)}&template=${urlencode(path)}`
@@ -38,6 +39,8 @@ function performPluginAction (action, plugin, pluginName) {
     .should('not.be.visible')
   cy.get(panelErrorQuery)
     .should('not.be.visible')
+  cy.get(processingIndicatorQuery)
+    .should('be.visible')
   cy.get(panelProcessingQuery)
     .should('be.visible')
     .contains(capitalize(processingText))
@@ -45,6 +48,8 @@ function performPluginAction (action, plugin, pluginName) {
   cy.task('log', `The ${plugin} plugin is ${action === 'upgrade' ? 'upgrad' : action}ing`)
 
   cy.get(panelProcessingQuery, { timeout: 20000 })
+    .should('not.be.visible')
+  cy.get(processingIndicatorQuery)
     .should('not.be.visible')
   cy.get(panelErrorQuery)
     .should('not.be.visible')
@@ -70,11 +75,15 @@ function failAction (action) {
     .should('not.be.visible')
   cy.get(panelErrorQuery)
     .should('not.be.visible')
+  cy.get(processingIndicatorQuery)
+    .should('be.visible')
   cy.get(panelProcessingQuery)
     .should('be.visible')
     .contains(`${capitalize(action === 'upgrade' ? 'Upgrad' : action)}ing ...`)
 
   cy.get(panelProcessingQuery, { timeout: 40000 })
+    .should('not.be.visible')
+  cy.get(processingIndicatorQuery)
     .should('not.be.visible')
   cy.get(panelCompleteQuery)
     .should('not.be.visible')
