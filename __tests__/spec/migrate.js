@@ -159,7 +159,7 @@ describe('migrate test prototype', () => {
     const unbrandedFileContents = getNormalisedFileContent(path.join(appDirectory, 'views', 'nested-test-folder', 'unbranded-test.html'))
 
     expect(unbrandedFileContents).toEqual(
-      '{% extends "govuk-prototype-kit/layouts/unbranded.html" %}\n' +
+      '{% extends "layouts/unbranded.html" %}\n' +
       '{% block pageScripts %}\n' +
       '  <script>\n' +
       '    console.log(\'Hello Unbranded\')\n' +
