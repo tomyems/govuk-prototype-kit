@@ -142,8 +142,8 @@ describe('migrate test prototype', () => {
     )
   })
 
-  it('layout.html should be overwritten', () => {
-    const layoutFileContents = getNormalisedFileContent(path.join(appDirectory, 'views', 'layout.html'))
+  it('layout.html should be replaced by layouts/main.html', () => {
+    const layoutFileContents = getNormalisedFileContent(path.join(appDirectory, 'views', 'layouts', 'main.html'))
 
     expect(layoutFileContents).toEqual(
       '{#\n' +
@@ -159,7 +159,7 @@ describe('migrate test prototype', () => {
     const unbrandedFileContents = getNormalisedFileContent(path.join(appDirectory, 'views', 'nested-test-folder', 'unbranded-test.html'))
 
     expect(unbrandedFileContents).toEqual(
-      '{% extends "govuk-prototype-kit/layouts/unbranded.html" %}\n' +
+      '{% extends "layouts/unbranded.html" %}\n' +
       '{% block pageScripts %}\n' +
       '  <script>\n' +
       '    console.log(\'Hello Unbranded\')\n' +

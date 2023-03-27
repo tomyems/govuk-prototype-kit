@@ -22,6 +22,7 @@ jest.mock('./migration-steps', () => {
     deleteEmptyDirectories: jest.fn().mockResolvedValue([true]),
     upgradeIfUnchanged: jest.fn(),
     updateUnbrandedLayouts: jest.fn().mockResolvedValue(true),
+    updateGovUkBrandedLayouts: jest.fn().mockResolvedValue(true),
     deleteIfUnchanged: jest.fn().mockResolvedValue([true, true, true]),
     removeOldPatternIncludesFromSassFile: jest.fn().mockResolvedValue(true)
   }
