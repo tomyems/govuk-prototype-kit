@@ -7,7 +7,8 @@
       "@govuk-prototype-kit/task-list",
       "hmrc-frontend",
       "jquery",
-      "notifications-node-client"
+      "notifications-node-client",
+      "home-office-kit"
     ]
   }
 }
